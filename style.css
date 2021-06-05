@@ -1,0 +1,64 @@
+html {
+    font-size: 62.5%;
+}
+
+.wrapper {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+}
+
+body {
+    font-size: 1.6rem;
+    background-color: #dae7f3 ;
+}
+
+h1 {
+    font-family: 'Sigmar One', cursive;
+    font-size: 7rem;
+    color: #3a204c;
+    text-align: center;
+}
+
+.imageContainer {
+    width: 50%;
+
+}
+
+.textContainer {
+    width: 50%;
+}
+
+.contentContainer {
+    display: flex;
+
+}
+
+.fetchButton {
+font-family: 'Stint Ultra Condensed', cursive;
+font-size: 3rem;
+text-decoration: none;
+background-color: #a8d0f4;
+padding: 12px 20px;
+border-radius: 20px;
+color: rgb(57, 57, 221);
+display: inline-block;
+margin: 60px auto;
+
+
+
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+
+
+
+
