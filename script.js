@@ -6,7 +6,10 @@ url.search = new URLSearchParams({
 });
 
 fetch(url).then(function(apiData) {
-    console.log(apiData.json())
+    return apiData.json()
+}).then((data) => {
+    // const name = document.querySelector("h2");
+    // name.innerText = data[0].name;
 });
 
 // Create variables hold keys/properties
@@ -23,7 +26,7 @@ fetch(url).then(function(apiData) {
 const dogApp = {};
 
 dogApp.init = function() {
-
+    
 }
 
 dogApp.init();
