@@ -12,6 +12,8 @@ fetch(url).then(function(apiData) {
     // name.innerText = data[0].name;
 });
 
+
+
 // Create variables hold keys/properties
 // Obtain data from Doggy API (Done)
 // Able to access specific data
@@ -24,6 +26,21 @@ fetch(url).then(function(apiData) {
 
 // Create namespace w/ init method
 const dogApp = {};
+
+dogApp.dogNameList = ["Spot", "Newton", "Ralph", "Frank", "Jerry", "Richie", "Nico", "Tarzan", "Nash", "Jono", "Puppy", "Santa's Little Helper", "Fido", "Wishbone", "Buster", "Vince", "Hunter", "Archer", "Max", "Marley", "Henry"] 
+
+dogApp.generateName =() =>{
+    const randomNumber = Math.floor(Math.random()*dogApp.dogNameList.length);
+    const name = dogApp.dogNameList[randomNumber];
+    const nameSelector = document.querySelector(".dogName");
+    nameSelector.textContent = name;
+}
+
+
+
+
+
+dogApp.generateName();
 
 dogApp.init = function() {
     
