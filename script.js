@@ -1,28 +1,15 @@
-
-// Create variables hold keys/properties
-// Obtain data from Doggy API (Done)
-// Able to access specific data
-// Create a function to randomize dogs and link to button
-// Use button to pull doggy data from array and insert into page
-// - calls the local method for a random breed to show up
-// - add a change event listener to call local (getUserQuery) to track
-
-// Handle error with template dog
-
-// Create namespace w/ init method
 const dogApp = {};
 
-dogApp.dogNameList = ["Spot", "Newton", "Ralph", "Frank", "Jerry", "Richie", "Nico", "Tarzan", "Nash", "Jono", "Puppy", "Santa's Little Helper", "Fido", "Wishbone", "Buster", "Vince", "Hunter", "Archer", "Max", "Marley", "Henry"] 
+dogApp.dogNameList = ["Spot", "Newton", "Ralph", "Frank", "Jerry", "Richie", "Nico", "Tarzan", "Nash", "Jono", "Puppy", "Santa's Little Helper", "Fido", "Wishbone", "Buster", "Vince", "Hunter", "Archer", "Max", "Marley", "Henry"];
 
-dogApp.generateName =() =>{
+dogApp.generateName = () => {
     const randomNumber = Math.floor(Math.random()*dogApp.dogNameList.length);
     const name = dogApp.dogNameList[randomNumber];
     const nameSelector = document.querySelector(".dogName");
     nameSelector.textContent = name;
 }
 
-
-dogApp.displayInformation =() => {
+dogApp.displayInformation = () => {
 
     const button = document.querySelector(".fetchButton");
 
@@ -37,64 +24,69 @@ dogApp.displayInformation =() => {
         });
 
         fetch(url).then(function(apiData) {
-        return apiData.json()
+            return apiData.json()
         }).then((data) => { 
 
-        console.log(data);
+            const randomNumber = Math.floor(Math.random()*data.length);   
 
-        const randomNumber = Math.floor(Math.random()*data.length);   
+            const name = document.querySelector("h2");
+            name.textContent = data[randomNumber].name;
 
-        const name = document.querySelector("h2");
-        name.textContent = data[randomNumber].name;
+            const bredFor = document.querySelector(".bredFor");
+            if (data[randomNumber].bred_for) {
+                bredFor.textContent = data[randomNumber].bred_for;
+                document.querySelector(".c1").style.display = "block";
+                bredFor.style.display = "block";
+            } else {
+                document.querySelector(".c1").style.display = "none";
+                bredFor.style.display = "none";
+            }
 
-        const bredFor = document.querySelector(".bredFor");
-        bredFor.textContent = data[randomNumber].bred_for;
+            const breedGroup = document.querySelector(".breedGroup");
+            if (data[randomNumber].breed_group) {
+                breedGroup.textContent = data[randomNumber].breed_group;
+                document.querySelector(".c2").style.display = "block";
+                breedGroup.style.display = "block";
+            } else {
+                document.querySelector(".c2").style.display = "none";
+                breedGroup.style.display = "none";
+            }
 
-        const breedGroup = document.querySelector(".breedGroup");
-        breedGroup.textContent = data[randomNumber].breed_group;
+            const height = document.querySelector(".height");
+            height.textContent = `${data[randomNumber].height.metric} inches`;
+            console.log(data[randomNumber].height.metric);
 
-        const height = document.querySelector(".height");
-        height.textContent = `${data[randomNumber].height.metric} inches`;
+            const lifespan = document.querySelector(".lifespan");
+            lifespan.textContent = data[randomNumber].life_span;
+            console.log(data[randomNumber].life_span);
 
-        const lifespan = document.querySelector(".lifespan");
-        lifespan.textContent = data[randomNumber].life_span;
+            const temperament = document.querySelector(".temperament");
+            if (data[randomNumber].temperament) {
+                temperament.textContent = data[randomNumber].temperament;
+                document.querySelector(".c5").style.display = "block";
+                temperament.style.display = "block";
+            } else {
+                document.querySelector(".c5").style.display = "none";
+                temperament.style.display = "none";
+            }
 
-        const temperament = document.querySelector(".temperament");
-        temperament.textContent = data[randomNumber].temperament;
+            const weight = document.querySelector(".weight");
+            weight.textContent = `${data[randomNumber].weight.metric} lbs`;
+            console.log(data[randomNumber].weight.metric);
 
-        const weight = document.querySelector(".weight");
-        weight.textContent = `${data[randomNumber].weight.metric} lbs`;
+            dogApp.generateName();
 
-        dogApp.generateName();
-
-        const dogPicture = document.querySelector(".dogImage");
-        dogPicture.src = data[randomNumber].image.url;
-        dogPicture.alt = `A photograph of a ${data[randomNumber].name}`;
-
-
-
-
-
-
-
-
-        // const name = document.querySelector("h2");
-        // name.innerText = data[0].name;
-        });
-
+            const dogPicture = document.querySelector(".dogImage");
+            dogPicture.src = data[randomNumber].image.url;
+            dogPicture.alt = `A photograph of a ${data[randomNumber].name}`;
+            });
 
     });
 
 }
 
-
-
-
-
-dogApp.displayInformation();
-
 dogApp.init = function() {
-    
+    dogApp.displayInformation();
 }
 
 dogApp.init();
