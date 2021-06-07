@@ -1,6 +1,6 @@
 const dogApp = {};
 
-dogApp.dogNameList = ["Spot", "Newton", "Ralph", "Frank", "Jerry", "Richie", "Nico", "Tarzan", "Nash", "Jono", "Puppy", "Santa's Little Helper", "Fido", "Wishbone", "Buster", "Vince", "Hunter", "Archer", "Max", "Marley", "Henry"];
+dogApp.dogNameList = ["Spot", "Newton", "Ralph", "Frank", "Jerry", "Richie", "Nico", "Tarzan", "Nash", "Jono", "Puppy", "Santa's Little Helper", "Fido", "Wishbone", "Buster", "Vince", "Hunter", "Archer", "Max", "Marley", "Henry", "Leo", "Jinx", "Logan", "Ninja", "Molly", "Oscar", "Coco", "Lucy", "Ruby", "Buddy", "Daisy", "Rosie", "Dog", "Bella", "Bailey", "Lola", "Ollie", "Toby", "Jack", "Teddy", "Archie", "Patches", "Atlas", "Rain", "Ritz", "Ash", "Clifford", "Arthur", "T-Bone", "Cleo", "Cinder"];
 
 dogApp.generateName = () => {
     const randomNumber = Math.floor(Math.random()*dogApp.dogNameList.length);
