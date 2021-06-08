@@ -37,6 +37,8 @@ dogApp.displayInformation = (data) => {
             const breed = document.querySelector("h2");
             breed.textContent = data[randomNumber].name;
 
+            dogApp.displayWiki(data[randomNumber].name);
+
             const bredFor = document.querySelector(".bredFor");
             if (data[randomNumber].bred_for) {
                 bredFor.textContent = data[randomNumber].bred_for;
@@ -85,6 +87,35 @@ dogApp.displayInformation = (data) => {
     });
 
 };
+
+        dogApp.displayWiki = function(breed) {
+            const proxiedUrl = `https://en.wikipedia.org/w/api.php?format=json&action=query&titles=${breed}&prop=extracts&redirects=1&exintro=&explaintext=&indexpageids`;
+            const url = new URL('http://proxy.hackeryou.com');
+            url.search = new URLSearchParams({
+                reqUrl: proxiedUrl,
+                'params[format]': "json",
+                'params[action]': "query",
+                'params[titles]': breed,
+                'params[prop]': "extracts",
+                'params[redirects]': 1,
+                'params[exintro]': "",
+                'params[explaintext]': "",
+                'params[indexpageids]': ""
+            });
+        
+            fetch(url).then(function(apiData) {
+                return apiData.json()
+            }).then((data) => {
+                const id = data.query.pageids[0];
+                if(data.query.pages[id].extract === "" || undefined) {
+                    document.querySelector(".wikiBlurb").textContent = "This dog currently has no information on Wikipedia."
+                } else {
+                document.querySelector(".wikiBlurb").textContent = data.query.pages[id].extract;
+                console.log(data.query.pages[id].extract);
+                console.log(data);
+            }
+            })
+        }
 
 dogApp.init = function() {
     dogApp.pullAPI()

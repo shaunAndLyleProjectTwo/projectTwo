@@ -277,7 +277,7 @@ h1 {
 
 h2 {
   text-align: center;
-  padding-bottom: 10px;
+  padding: 10px;
 }
 
 .informationList {
@@ -298,8 +298,8 @@ ul ul li {
   margin: 5px 0;
 }
 
-.imageContainer, .textContainer {
-  margin: 0 10px;
+.imageContainer, .textContainer, .wikiConnect {
+  margin: 10px;
   padding: 10px;
   border: 2px dashed;
   font-family: "Francois One", sans-serif;
@@ -307,8 +307,9 @@ ul ul li {
 }
 
 .dogName {
-  margin-top: 20px;
+  margin: 20px 0;
   font-size: 2rem;
+  color: #3a204c;
 }
 
 .imageContainer {
@@ -324,6 +325,10 @@ ul ul li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.wikiBlurb {
+  text-align: center;
 }
 
 .fetchButton {
@@ -349,10 +354,33 @@ section {
 }
 
 footer {
-  background-color: #68b6c6;
   text-align: center;
   padding: 10px;
+  margin-bottom: 20px;
+  border: 2px dashed;
+  background-color: #eaeff5;
 }
 footer p {
   margin: 0;
+}
+
+@media (max-width: 730px) {
+  .contentContainer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+
+  .imageContainer {
+    width: 100%;
+  }
+
+  .textContainer {
+    width: 100%;
+  }
+
+  .wikiConnect {
+    width: 100%;
+  }
 }
