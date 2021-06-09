@@ -12,7 +12,7 @@ dogApp.displayName = () => {
 dogApp.pullAPI = () => {
 
     const proxiedUrl = 'https://api.thedogapi.com/v1/breeds';
-    const url = new URL('http://proxy.hackeryou.com');
+    const url = new URL('https://proxy.hackeryou.com');
     url.search = new URLSearchParams({
         reqUrl: proxiedUrl,
         'params[api_key]': "7608a588-4fba-4439-9615-aa56d69964ab",
