@@ -90,7 +90,7 @@ dogApp.displayInformation = (data) => {
 
         dogApp.displayWiki = function(breed) {
             const proxiedUrl = `https://en.wikipedia.org/w/api.php?format=json&action=query&titles=${breed}&prop=extracts&redirects=1&exintro=&explaintext=&indexpageids=""`;
-            const url = new URL('http://proxy.hackeryou.com');
+            const url = new URL('https://proxy.hackeryou.com');
             url.search = new URLSearchParams({
                 reqUrl: proxiedUrl,
                 'params[format]': "json",
