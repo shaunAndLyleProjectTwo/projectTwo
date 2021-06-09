@@ -89,7 +89,7 @@ dogApp.displayInformation = (data) => {
 };
 
         dogApp.displayWiki = function(breed) {
-            const proxiedUrl = `https://en.wikipedia.org/w/api.php?format=json&action=query&titles=${breed}&prop=extracts&redirects=1&exintro=&explaintext=&indexpageids`;
+            const proxiedUrl = `https://en.wikipedia.org/w/api.php?format=json&action=query&titles=${breed}&prop=extracts&redirects=1&exintro=&explaintext=&indexpageids=""`;
             const url = new URL('http://proxy.hackeryou.com');
             url.search = new URLSearchParams({
                 reqUrl: proxiedUrl,
@@ -106,14 +106,15 @@ dogApp.displayInformation = (data) => {
             fetch(url).then(function(apiData) {
                 return apiData.json()
             }).then((data) => {
+
                 const id = data.query.pageids[0];
-                if(data.query.pages[id].extract === "" || undefined) {
-                    document.querySelector(".wikiBlurb").textContent = "This dog currently has no information on Wikipedia."
+                if (id === "-1") {
+                    document.querySelector(".wikiBlurb").textContent = "We are currently unable to find the appropriate information for this doggo. But they cute though!"
+                } else if (data.query.pages[id].extract.length > 170) {
+                        document.querySelector(".wikiBlurb").textContent = data.query.pages[id].extract;
                 } else {
-                document.querySelector(".wikiBlurb").textContent = data.query.pages[id].extract;
-                console.log(data.query.pages[id].extract);
-                console.log(data);
-            }
+                    document.querySelector(".wikiBlurb").textContent = "We are currently unable to find the appropriate information for this doggo. But they cute though!"
+                }
             })
         }
 

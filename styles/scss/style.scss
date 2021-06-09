@@ -13,7 +13,7 @@ html {
 }
 
 .wrapper {
-    width: 80%;
+    width: 70%;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -76,7 +76,6 @@ ul ul li {
     border: 2px dashed;
     font-family: 'Francois One', sans-serif;
     background-color: #eaeff5;
-    //dashed, dotted, solid
 }
 
 .dogName {
@@ -88,7 +87,6 @@ ul ul li {
 .imageContainer {
     text-align: center;
     width: calc(100% - 40px - 300px);
-
 }
 
 .textContainer {
@@ -132,20 +130,21 @@ footer {
 }
 
 @media (max-width: 730px) {
+
     .contentContainer {
      flex-direction: column;
     }
  
-.imageContainer {
-    width: 100%;
-}
-
-.textContainer {
-    width: 100%;
+    .imageContainer {
+        width: 100%;
     }
 
-.wikiConnect {
-    width: 100%;
-}
+    .textContainer {
+        width: 100%;
+    }
+
+    .wikiConnect {
+        width: 100%;
+    }
 
 }
