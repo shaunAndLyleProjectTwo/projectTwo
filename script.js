@@ -9,7 +9,7 @@ dogApp.displayName = () => {
     nameSelector.textContent = name;
 }
 
-dogApp.pullAPI = () => {
+dogApp.pageSetUp = () => {
 
     const proxiedUrl = 'https://api.thedogapi.com/v1/breeds';
     const url = new URL('https://proxy.hackeryou.com');
@@ -22,104 +22,126 @@ dogApp.pullAPI = () => {
         return apiData.json()
     }).then((data) => {
         dogApp.displayInformation(data);
+
+        let index = 0;
+
+        data.forEach((dog) => {
+            const select = document.querySelector("select");
+
+            const element = document.createElement("option");
+            element.textContent = dog.name;
+            element.setAttribute("value", index);
+
+            select.appendChild(element);
+            index += 1;
+        })
+
     })
 }
 
 dogApp.displayInformation = (data) => {
 
+    const form = document.querySelector("form");
+    form.addEventListener("change", function(e) {
+        dogApp.displayDogs(data, e.target.value);
+    })
+
     const button = document.querySelector(".fetchButton");
 
     button.addEventListener("click", (e) => {
         e.preventDefault();
+        const randomNumber = Math.floor(Math.random() * data.length); 
 
-            const randomNumber = Math.floor(Math.random() * data.length);   
-
-            const breed = document.querySelector("h2");
-            breed.textContent = data[randomNumber].name;
-
-            dogApp.displayWiki(data[randomNumber].name);
-
-            const bredFor = document.querySelector(".bredFor");
-            if (data[randomNumber].bred_for) {
-                bredFor.textContent = data[randomNumber].bred_for;
-                document.querySelector(".c1").style.display = "block";
-                bredFor.style.display = "block";
-            } else {
-                document.querySelector(".c1").style.display = "none";
-                bredFor.style.display = "none";
-            }
-
-            const breedGroup = document.querySelector(".breedGroup");
-            if (data[randomNumber].breed_group) {
-                breedGroup.textContent = data[randomNumber].breed_group;
-                document.querySelector(".c2").style.display = "block";
-                breedGroup.style.display = "block";
-            } else {
-                document.querySelector(".c2").style.display = "none";
-                breedGroup.style.display = "none";
-            }
-
-            const height = document.querySelector(".height");
-            height.textContent = `${data[randomNumber].height.metric} inches`;
-
-            const lifespan = document.querySelector(".lifespan");
-            lifespan.textContent = data[randomNumber].life_span;
-
-            const temperament = document.querySelector(".temperament");
-            if (data[randomNumber].temperament) {
-                temperament.textContent = data[randomNumber].temperament;
-                document.querySelector(".c5").style.display = "block";
-                temperament.style.display = "block";
-            } else {
-                document.querySelector(".c5").style.display = "none";
-                temperament.style.display = "none";
-            }
-
-            const weight = document.querySelector(".weight");
-            weight.textContent = `${data[randomNumber].weight.metric} lbs`;
-
-            const dogPicture = document.querySelector(".dogImage");
-            dogPicture.src = data[randomNumber].image.url;
-            dogPicture.alt = `A photograph of a ${data[randomNumber].name}`;
-
-            dogApp.displayName();
+        dogApp.displayDogs(data, randomNumber)
 
     });
-
 };
 
-        dogApp.displayWiki = function(breed) {
-            const proxiedUrl = `https://en.wikipedia.org/w/api.php?format=json&action=query&titles=${breed}&prop=extracts&redirects=1&exintro=&explaintext=&indexpageids=""`;
-            const url = new URL('https://proxy.hackeryou.com');
-            url.search = new URLSearchParams({
-                reqUrl: proxiedUrl,
-                'params[format]': "json",
-                'params[action]': "query",
-                'params[titles]': breed,
-                'params[prop]': "extracts",
-                'params[redirects]': 1,
-                'params[exintro]': "",
-                'params[explaintext]': "",
-                'params[indexpageids]': ""
-            });
-        
-            fetch(url).then(function(apiData) {
-                return apiData.json()
-            }).then((data) => {
+dogApp.displayDogs = (data, num) => {
 
-                const id = data.query.pageids[0];
-                if (id === "-1") {
-                    document.querySelector(".wikiBlurb").textContent = "We are currently unable to find the appropriate information for this doggo. But they cute though!"
-                } else if (data.query.pages[id].extract.length > 170) {
-                        document.querySelector(".wikiBlurb").textContent = data.query.pages[id].extract;
-                } else {
-                    document.querySelector(".wikiBlurb").textContent = "We are currently unable to find the appropriate information for this doggo. But they cute though!"
-                }
-            })
+    const breed = document.querySelector("h2");
+    breed.textContent = data[num].name;
+
+    dogApp.displayWiki(data[num].name);
+
+    const bredFor = document.querySelector(".bredFor");
+    if (data[num].bred_for) {
+        bredFor.textContent = data[num].bred_for;
+        document.querySelector(".c1").style.display = "block";
+        bredFor.style.display = "block";
+    } else {
+        document.querySelector(".c1").style.display = "none";
+        bredFor.style.display = "none";
+    }
+
+    const breedGroup = document.querySelector(".breedGroup");
+    if (data[num].breed_group) {
+        breedGroup.textContent = data[num].breed_group;
+        document.querySelector(".c2").style.display = "block";
+        breedGroup.style.display = "block";
+    } else {
+        document.querySelector(".c2").style.display = "none";
+        breedGroup.style.display = "none";
+    }
+
+    const height = document.querySelector(".height");
+    height.textContent = `${data[num].height.metric} inches`;
+
+    const lifespan = document.querySelector(".lifespan");
+    lifespan.textContent = data[num].life_span;
+
+    const temperament = document.querySelector(".temperament");
+    if (data[num].temperament) {
+        temperament.textContent = data[num].temperament;
+        document.querySelector(".c5").style.display = "block";
+        temperament.style.display = "block";
+    } else {
+        document.querySelector(".c5").style.display = "none";
+        temperament.style.display = "none";
+    }
+
+    const weight = document.querySelector(".weight");
+    weight.textContent = `${data[num].weight.metric} lbs`;
+
+    const dogPicture = document.querySelector(".dogImage");
+    dogPicture.src = data[num].image.url;
+    dogPicture.alt = `A photograph of a ${data[num].name}`;
+
+    dogApp.displayName();
+}
+
+dogApp.displayWiki = function(breed) {
+    const proxiedUrl = `https://en.wikipedia.org/w/api.php`;
+    const url = new URL('https://proxy.hackeryou.com');
+    url.search = new URLSearchParams({
+        reqUrl: proxiedUrl,
+        'params[format]': "json",
+        'params[action]': "query",
+        'params[titles]': breed,
+        'params[prop]': "extracts",
+        'params[redirects]': 1,
+        'params[exintro]': "",
+        'params[explaintext]': "",
+        'params[indexpageids]': ""
+    });
+
+    fetch(url).then(function(apiData) {
+        return apiData.json()
+    }).then((data) => {
+
+        const id = data.query.pageids[0];
+        if (id === "-1") {
+            document.querySelector(".wikiBlurb").textContent = "We are currently unable to find the appropriate information for this doggo. But they cute though!"
+        } else if (data.query.pages[id].extract.length > 170) {
+                document.querySelector(".wikiBlurb").textContent = data.query.pages[id].extract;
+        } else {
+            document.querySelector(".wikiBlurb").textContent = "We are currently unable to find the appropriate information for this doggo. But they cute though!"
         }
+    })
+}
 
 dogApp.init = function() {
-    dogApp.pullAPI()
+    dogApp.pageSetUp()
 }
 
 dogApp.init();
