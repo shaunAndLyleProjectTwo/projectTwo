@@ -373,15 +373,15 @@ footer p {
   }
 
   .imageContainer {
-    width: 100%;
+    width: calc(100% - 20px);
   }
 
   .textContainer {
-    width: 100%;
+    width: calc(100% - 20px);
   }
 
   .wikiConnect {
-    width: 100%;
+    width: calc(100% - 20px);
   }
 
   select {
