@@ -12,15 +12,51 @@ html {
     font-size: 62.5%;
 }
 
+body {
+    font-size: 1.6rem;
+    background-color: #dae7f3;
+}
+
 .wrapper {
     width: 70%;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-body {
-    font-size: 1.6rem;
-    background-color: #dae7f3 ;
+h1, h2, p, .informationList {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+    li {
+        margin: 5px 0;  
+    }
+}
+
+h1 {
+    font-family: 'Sigmar One', cursive;
+    font-size: 6rem;
+    color: #3a204c;
+    margin: 20px;
+    text-align: center;
+}
+
+form {
+    margin: 10px;
+    text-align: right;
+    font-size: 1.72rem;
+}
+
+h2 {
+    padding: 10px;
+    text-align: center;
+}
+
+.category {
+    padding-top: 5px;
+    text-decoration: underline;
 }
 
 a {
@@ -34,59 +70,17 @@ img {
     object-fit: contain;
 }
 
-h1, h2, p {
-    padding: 0;
-    margin: 0;
-}
-
-h1 {
-    font-family: 'Sigmar One', cursive;
-    font-size: 6rem;
-    color: #3a204c;
-    text-align: center;
-    margin: 20px;
-}
-
-h2 {
-    text-align: center;
-    padding: 10px;
-}
-
-.informationList {
-    padding: 0;
-    margin: 0;
-}
-
-.category {
-    text-decoration: underline;
-    padding-top: 5px;
-}
-
-li {
-    list-style: none;
-}
-
-ul ul li {
-    margin: 5px 0;
-}
-
 .imageContainer, .textContainer, .wikiConnect {
     margin: 10px;
     padding: 10px;
-    border: 2px dashed;
+    border: dashed 2px;
     font-family: 'Francois One', sans-serif;
     background-color: #eaeff5;
 }
 
-.dogName {
-    margin: 20px 0;
-    font-size: 2rem;
-    color: #3a204c;
-}
-
 .imageContainer {
     text-align: center;
-    width: calc(100% - 40px - 300px);
+    width: calc(100% - 40px - 300px)
 }
 
 .textContainer {
@@ -95,6 +89,12 @@ ul ul li {
 
 .contentContainer {
     display: flex;
+}
+
+.dogName {
+    margin: 20px 0;
+    font-size: 2rem;
+    color: #3a204c;
 }
 
 .wikiBlurb {
@@ -108,7 +108,7 @@ ul ul li {
     background-color: #a8d0f4;
     padding: 12px 20px;
     border-radius: 15px;
-    color: rgb(57, 57, 221);
+    color: #3939dd;
     display: inline-block;
     margin: 60px auto;
 }
@@ -122,7 +122,7 @@ footer {
     text-align: center;
     padding: 10px;
     margin-bottom: 20px;
-    border: 2px dashed;
+    border: dashed 2px;
     background-color: #eaeff5;
     p {
         margin: 0;
@@ -130,21 +130,25 @@ footer {
 }
 
 @media (max-width: 730px) {
-
     .contentContainer {
      flex-direction: column;
     }
- 
     .imageContainer {
         width: 100%;
     }
-
     .textContainer {
         width: 100%;
     }
-
     .wikiConnect {
         width: 100%;
     }
 
+    select {
+        width: 100%;
+    }
 }
+
+
+
+
+
