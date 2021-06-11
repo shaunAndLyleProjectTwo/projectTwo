@@ -8,13 +8,18 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
+$backgroundColor: #dae7f3;
+$name: #3a204c;
+$containerBackground: #eaeff5;
+
+
 html {
     font-size: 62.5%;
 }
 
 body {
     font-size: 1.6rem;
-    background-color: #dae7f3;
+    background-color: $backgroundColor;
 }
 
 .wrapper {
@@ -38,7 +43,7 @@ li {
 h1 {
     font-family: 'Sigmar One', cursive;
     font-size: 6rem;
-    color: #3a204c;
+    color: $name; 
     margin: 20px;
     text-align: center;
 }
@@ -75,7 +80,7 @@ img {
     padding: 10px;
     border: dashed 2px;
     font-family: 'Francois One', sans-serif;
-    background-color: #eaeff5;
+    background-color: $containerBackground;
 }
 
 .imageContainer {
@@ -94,7 +99,7 @@ img {
 .dogName {
     margin: 20px 0;
     font-size: 2rem;
-    color: #3a204c;
+    color: $name; 
 }
 
 .wikiBlurb {
@@ -123,7 +128,7 @@ footer {
     padding: 10px;
     margin-bottom: 20px;
     border: dashed 2px;
-    background-color: #eaeff5;
+    background-color: $containerBackground;
     p {
         margin: 0;
     }
@@ -147,6 +152,8 @@ footer {
         width: 100%;
     }
 }
+
+
 
 
 
